@@ -31,13 +31,14 @@ class MyApp extends StatelessWidget {
           title: Text('폼 검증 demo'),
         ),
       body: MyCustomForm(),
+      ),
     );
   }
 }
 
 class MyCustomForm extends StatefulWidget {
   @override
-  _MyCustomFormState createState() {
+  MyCustomFormState createState() {
     return MyCustomFormState();
   }
 }
