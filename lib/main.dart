@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Retrieve Text Input',
+      title: '폼 검증 demo',
       //theme: ThemeData(
         // This is the theme of your application.
         //
@@ -26,21 +26,26 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
       //   visualDensity: VisualDensity.adaptivePlatformDensity,
       // ),
-      home: MyCustomForm(),
+      home : Scaffold(
+        appBar: AppBar(
+          title: Text('폼 검증 demo'),
+        ),
+      body: MyCustomForm(),
     );
   }
 }
 
 class MyCustomForm extends StatefulWidget {
   @override
-  _MyCustomFormState createState() => _MyCustomFormState();
+  _MyCustomFormState createState() {
+    return MyCustomFormState();
+  }
 }
 
 
-class _MyCustomFormState extends State<MyCustomForm> {
+class MyCustomFormState extends State<MyCustomForm> {
 
-  // text 필드 현재값 가져오기
-  final myController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
