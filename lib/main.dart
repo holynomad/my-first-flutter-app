@@ -49,28 +49,38 @@ class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
 
   @override
-  void initState() {
-
-    super.initState();
-
-    // addListener로 상태 모니터링
-    myController.addListener(_printLatestValue);
-  }
-
-  @override
-  void dispose() {
-    // 화면 종료시 위젯트리에서 콘트롤러 해제 필요
-    myController.dispose();
-    super.dispose();
-  }
-
-  _printLatestValue() {
-    // 컨트롤러의 text 프로퍼티로 연결된 text 필드에 입력된 값 가져오기
-    print("두 번째 text field : ${myController.text}");
-  }
-
-  @override
   Widget build(BuildContext context) {
+    // form 위젯에 _formKey를 지정
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget> [
+          TextFormField(
+            validator: (value) {
+              if (value.isEmpty) {
+                return '글자를 입력하세요.';
+              }
+              return null;
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: RaisedButton(
+              onPressed: () {
+                // 폼 검증 통과시 true, 미통과시 false
+                if (_formKey.currentState.validate()) {
+                  // 검증 통과시 스낵바 표시
+                  Scaffold.of(context)
+                      .showSnackBar((SnackBar(content: Text('검증 완료'))))
+                }
+              }
+            )
+          )
+        ],
+      )
+    )
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
