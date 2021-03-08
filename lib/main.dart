@@ -72,14 +72,15 @@ class MyCustomFormState extends State<MyCustomForm> {
                 if (_formKey.currentState.validate()) {
                   // 검증 통과시 스낵바 표시
                   Scaffold.of(context)
-                      .showSnackBar((SnackBar(content: Text('검증 완료'))))
+                      .showSnackBar((SnackBar(content: Text('검증 완료'))));
                 }
-              }
-            )
-          )
+              },
+              child: Text('검증'),
+            ),
+          ),
         ],
-      )
-    )
+      ),
+    );
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
